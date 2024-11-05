@@ -5,7 +5,7 @@
 namespace ApiWeb.Migrations
 {
     /// <inheritdoc />
-    public partial class goku : Migration
+    public partial class tilin : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

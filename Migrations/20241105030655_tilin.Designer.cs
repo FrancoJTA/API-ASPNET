@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ApiWeb.Migrations
 {
     [DbContext(typeof(MyDBContext))]
-    [Migration("20241028121432_goku")]
-    partial class goku
+    [Migration("20241105030655_tilin")]
+    partial class tilin
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
