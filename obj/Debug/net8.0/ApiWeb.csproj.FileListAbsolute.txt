@@ -143,3 +143,4 @@ C:\University-Projects\Web Projects\ApiWeb\obj\Debug\net8.0\refint\ApiWeb.dll
 C:\University-Projects\Web Projects\ApiWeb\obj\Debug\net8.0\ApiWeb.pdb
 C:\University-Projects\Web Projects\ApiWeb\obj\Debug\net8.0\ApiWeb.genruntimeconfig.cache
 C:\University-Projects\Web Projects\ApiWeb\obj\Debug\net8.0\ref\ApiWeb.dll
+C:\University-Projects\Web Projects\ApiWeb\obj\Debug\net8.0\ApiWeb.sourcelink.json

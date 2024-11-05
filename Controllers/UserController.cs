@@ -22,6 +22,18 @@ public class UserController : Controller
         return await _mdb.Users.ToListAsync();
     }
     
+    
+    [HttpGet("{id}")]
+    public async Task<ActionResult<User>> GetUser(int id)
+    {
+        var usuario = await _mdb.Users.FirstOrDefaultAsync(a=>a.Id == id);
+        
+        if(usuario == null)
+            return NotFound();
+        
+        return usuario;
+    }
+    
     [HttpPost]
     public async Task<ActionResult<User>> CreateUser([FromBody] User user)
     {
@@ -33,7 +45,47 @@ public class UserController : Controller
         _mdb.Users.Add(user);
         await _mdb.SaveChangesAsync();
 
-        // Retorna el usuario creado y un código de estado 201 Created
-        return CreatedAtAction(nameof(Listar), new { id = user.Id }, user);
+        return CreatedAtAction(nameof(GetUser), new { id = user.Id }, user);
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteUser(int id)
+    {
+        var Usuario = await _mdb.Users.FindAsync(id);
+        if(Usuario == null)
+                return NotFound();
+        _mdb.Users.Remove(Usuario);
+        await _mdb.SaveChangesAsync();
+        return NoContent();
+    }
+
+    [HttpPut("{id}")]
+    public async Task<IActionResult> UpdateUser(int id, [FromBody] User user)
+    {
+        if (id != user.Id)
+            return BadRequest();
+        _mdb.Entry(user).State = EntityState.Modified;
+        try
+        {
+            _mdb.Users.Update(user);
+            await _mdb.SaveChangesAsync();
+        }
+        catch (DbUpdateConcurrencyException)
+        {
+            if (!UserExiste(user.Id))
+            {
+                return NoContent();
+            }
+            else
+            {
+                throw;
+            }
+        }
+        return NoContent();
+    }
+
+    private bool UserExiste(int id)
+    {
+        return _mdb.Users.Any(a => a.Id == id);
     }
 }
